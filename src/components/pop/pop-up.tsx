@@ -13,6 +13,8 @@ import { msg } from 'plume2';
 import FactoryKit from '../kit';
 import { Text } from 'components';
 
+const MyTouchableOpacity: any = TouchableOpacity;
+
 export default class PopUp extends Component<any, any> {
   static defaultProps = {
     component: null,
@@ -73,7 +75,7 @@ export default class PopUp extends Component<any, any> {
             { opacity: this.state.opacityValue, flex: this.state.backFlexValue }
           ]}
         >
-          <TouchableOpacity
+          <MyTouchableOpacity
             style={styles.headerCloseBtn}
             onPress={this._handleOnClose}
           />
@@ -92,7 +94,7 @@ export default class PopUp extends Component<any, any> {
           >
             {this.props.onCancel
               ? <View style={styles.btnLeft}>
-                <TouchableOpacity
+                <MyTouchableOpacity
                   accessible={true}
                   accessibilityLabel={`qm-popup:close-btn`}
                   hitSlop={{ top: 0, left: 10, bottom: 15, right: 0 }}
@@ -100,13 +102,13 @@ export default class PopUp extends Component<any, any> {
                   onPress={this._handleOnClose}
                 >
                   <Text>取消</Text>
-                </TouchableOpacity>
+                </MyTouchableOpacity>
               </View>
               : null}
 
             {this.props.onOk
               ? <View style={styles.btnRight}>
-                <TouchableOpacity
+                <MyTouchableOpacity
                   accessible={true}
                   accessibilityLabel={`qm-popup:close-btn`}
                   hitSlop={{ top: 0, left: 10, bottom: 15, right: 0 }}
@@ -114,7 +116,7 @@ export default class PopUp extends Component<any, any> {
                   onPress={this._handleOnClose}
                 >
                   <Text>确定</Text>
-                </TouchableOpacity>
+                </MyTouchableOpacity>
               </View>
               : null}
           </View>

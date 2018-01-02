@@ -127,7 +127,7 @@ export default class QMButton extends React.Component<PropsType, any> {
 			style,
 		];
 
-		const underlayColor = StyleSheet.flatten(styles[activeStyle ? `${type}Highlight` : `${type}Raw`])
+		const underlayColor = (StyleSheet.flatten(styles[activeStyle ? `${type}Highlight` : `${type}Raw`]) as any)
 			.backgroundColor;
 
 		const indicatorColor = (StyleSheet.flatten(

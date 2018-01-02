@@ -65,6 +65,10 @@ export default class Index extends React.Component<any, any> {
         this.debounce = true;
     }
 
+    componentDidMount() {
+        (console as any).disableYellowBox = true;
+    }
+
     componentWillUnmount() {
         msg.off('route:goToNext', Kit.noop);
         msg.off('route:backToLast', Kit.noop);
@@ -80,7 +84,6 @@ export default class Index extends React.Component<any, any> {
 
 
     render() {
-        //StackNavigator(RouteConfigs, StackNavigatorConfig)
         const AppStackNavigator = StackNavigator(Routes, {
             initialRouteName: this.props.initialRoute || 'Home', //Sets the default screen of the stack. Must match one of the keys in route configs.
             cardStyle: { flex: 1, backgroundColor: '#fff' },  //Use this prop to override or extend the default style for an individual card in stack.
@@ -95,9 +98,6 @@ export default class Index extends React.Component<any, any> {
                 ref={na => na && (this.navigation = na._navigation)}
                 onNavigationStateChange={
                     (prevState, currentState) => {
-                        {/* console.log('------prevState:', prevState);
-                        console.log('------currentState:', currentState); */}
-
                         if (!currentState) {
                             return;
                         }

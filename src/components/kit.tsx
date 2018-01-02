@@ -5,53 +5,14 @@ import Fetch from "./fetch";
 import config from "./config";
 import { msg } from "plume2";
 
+const MyPlatform: any = Platform;
+
 const {
   HOST,
   PARENT_ID,
   iOS_STORE_VERSION,
   ANDROID_VERSION,
 } = config;
-
-/**
- * VersionCheck
- */
-async function VersionCheck(handler: Function): Promise<any> {
-  const { res, err } = await Fetch(`${HOST}/getNewVersion?parentId=${PARENT_ID}&iosVersion=${iOS_STORE_VERSION}&androidVersion=${ANDROID_VERSION}`);
-  if (err) {
-    return;
-  }
-
-  //iOS
-  if (Platform.OS === 'ios') {
-    if (res.iosStoreVersion > iOS_STORE_VERSION) {
-      //Alert.alert ('友情提示', '有新版本，请升级', [
-      //  {
-      //    text: '确定', onPress: () => {
-      //    Linking.openURL (res.iosStoreUrl);
-      //  }
-      //  }]);
-      msg.emit('app:update', res);
-    } else {
-      // 没有大版本再检查codpush
-      // SyncCode(handler);
-    }
-  }
-  else {
-    //Android
-    if (res.androidNewVersion > ANDROID_VERSION) {
-      //Alert.alert ('友情提示', '有新版本，请升级', [
-      //  {
-      //    text: '确定', onPress: () => {
-      //    Linking.openURL (res.androidNewVersionAdd)
-      //  }
-      //  }]);
-      msg.emit('app:update', res);
-    } else {
-      // 没有大版本再检查codpush
-      // SyncCode(handler);
-    }
-  }
-}
 
 
 /**
@@ -260,10 +221,14 @@ const KIT = {
     return !KIT.isAndroid();
   },
 
-  /**
-   * 版本检测
-   */
-  versionCheck: VersionCheck,
+  isIphoneX(): boolean {
+    return (
+      MyPlatform.OS === 'ios' &&
+      !MyPlatform.isPad &&
+      !MyPlatform.isTVOS &&
+      (Dimensions.get('window').height === 812 || Dimensions.get('window').width === 812)
+    );
+  },
 
   /**
    * 将module flat化
