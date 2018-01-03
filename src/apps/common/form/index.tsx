@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Scene, Text, Theme, InputItem, VaildUtil, TextField, ActionSheet, Kit } from 'components';
+import { Scene, Text, Theme, InputItem, RegUtil, TextField, ActionSheet, Kit, Util } from 'components';
 import {
     AppRegistry,
     StyleSheet,
@@ -82,13 +82,13 @@ export default class index extends Component<any, any> {
                                     rules: [
                                         { required: true, message: '请输入姓名' },
                                         { min: 4, max: 20, message: '姓名4~20位,中文或英文组成' },
-                                        { pattern: VaildUtil.reg_name, message: '姓名只能由中文或者英文组成' }
+                                        { pattern: RegUtil.reg_name, message: '姓名只能由中文或者英文组成' }
                                     ]
                                 }) }
                                 ref='nameInput'
                                 clear
-                                onBlur={() => this._blur('name')}
                                 maxLength={20}
+                                onBlur={() => this._blur('name')}
                                 onFocus={() => this._handleKeyBoard(this.refs['nameInput'], 0)}
                                 placeholder="请输入姓名,必填"
                             >姓名</InputItem>
@@ -101,9 +101,9 @@ export default class index extends Component<any, any> {
                                 }) }
                                 ref='mobileInput'
                                 clear
-                                type="phone"
+                                type="number"
+                                maxLength={11}
                                 onBlur={() => this._blur('mobile')}
-                                maxLength={13}
                                 onFocus={() => this._handleKeyBoard(this.refs['mobileInput'], 0)}
                                 placeholder="请输入手机号码,必填"
                             >手机号码</InputItem>
@@ -139,11 +139,19 @@ export default class index extends Component<any, any> {
 
                 console.log('======== data:', data);
             } else {
-                this._warning(error);
+                Util.solveMessage(error);
             }
         });
     }
 
+
+    _blur = (input) => {
+        this.props.form.validateFields([input], { force: true }, (error) => {
+            if (error) {
+                Util.solveMessage(error);
+            }
+        });
+    }
 
     //底部弹出选择男女
     _showActionSheet = () => {
@@ -167,35 +175,12 @@ export default class index extends Component<any, any> {
             },
             buttonIndex => {
                 if (buttonIndex != 2) {
-                    let t = {};
-                    Object.assign(t, data, { sex: buttonValues[buttonIndex] });
-                    this.setState({ data: t })
+                    objectAssign(data, { sex: buttonValues[buttonIndex] });
+                    this.setState({ data: data })
                 }
             }
         );
     };
-
-
-    _blur = (input) => {
-        this.props.form.validateFields([input], { force: true }, (error) => {
-            if (error) {
-                this._warning(error);
-            }
-        });
-    }
-
-    _warning = (error) => {
-        let Obj: any = Object;
-        let vals = Obj.values(error);
-
-        for (let { errors } of vals) {
-            for (let { field, message } of errors) {
-                Toast.info(message, 2, () => { }, false);
-                break;
-            }
-            break;
-        }
-    }
 
     _handleKeyBoard = (input, offset) => {
         if (Kit.isIOS) {

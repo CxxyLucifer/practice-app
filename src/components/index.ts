@@ -38,7 +38,8 @@ import Images from './images'
 import DropComponent from './dropDown'
 import noop from './noop'
 import config from './config'
-import VaildUtil from './util/validUtil'
+import RegUtil from './util/regUtil'
+import Util from './util/util'
 import TextField from './text-field'
 
 
@@ -78,6 +79,7 @@ export {
     DropComponent,
     noop,
     config,
-    VaildUtil,
+    RegUtil,
+    Util,
     TextField
 }
