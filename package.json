@@ -18,7 +18,7 @@
     "immutable": "3.8.1",
     "moment": "^2.19.3",
     "object-assign": "^4.0.1",
-    "plume2": "0.1.6",
+    "plume2": "^0.3.2",
     "rc-dialog": "~6.5.7",
     "rc-form": "^2.1.4",
     "rc-input-number": "3.4.13",
