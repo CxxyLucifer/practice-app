@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import App from './build/apps';
 
-export default class practiceApp extends Component<{}> {
+export default class practiceApp extends Component {
   render() {
     return (
       <App initialRoute='Home' />

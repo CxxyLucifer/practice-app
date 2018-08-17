@@ -7,7 +7,8 @@ import { msg } from 'plume2'
 import { Scene, Tag, Icon, SwipeAction, Theme } from 'components'
 
 const Functions = [
-    { name: 'Form' }
+    { name: 'Form' },
+    { name: 'MaskModal'}
 ];
 
 export default class Home extends Component<any, any> {

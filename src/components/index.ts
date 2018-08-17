@@ -41,6 +41,7 @@ import config from './config'
 import RegUtil from './util/regUtil'
 import Util from './util/util'
 import TextField from './text-field'
+import MaskModal from './maskModal/index'
 
 
 const PullToRefreshList = Platform.OS === 'android' ? PullToRefreshListAndroid : PullToRefreshListIOS;
@@ -81,5 +82,6 @@ export {
     config,
     RegUtil,
     Util,
-    TextField
+    TextField,
+    MaskModal
 }
