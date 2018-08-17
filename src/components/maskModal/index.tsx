@@ -15,7 +15,7 @@ export default class MaskModal extends Component<Iprops,any>{
     onClose: () => {}
   }
 
-  constructor(props) {
+  constructor(props:Iprops) {
 		super(props);
 	}
 
