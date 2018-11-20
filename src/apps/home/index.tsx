@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import { View, StyleSheet } from "react-native"
 import { Scene, TabBar, Theme, Text } from "components";
-import { StoreProvider, msg } from "plume2";
 import Common from '../common';
 //third
 import ThirdPart from '../thirdPart';

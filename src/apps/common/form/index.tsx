@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Scene, Text, Theme, InputItem, RegUtil, TextField, ActionSheet, Kit, Util,MaskModal} from 'components';
+import { Scene, Text, Theme, InputItem, RegUtil, TextField, ActionSheet, Kit, Util} from 'components';
 import {
     StyleSheet,
     View,
@@ -36,7 +36,8 @@ export default class index extends Component<any, any> {
         this.state = {
             data: {
                 sex: '1',//性别，默认男,
-                bottom: 0
+                bottom: 0,
+                showMask:true
             }
         };
     }
@@ -61,7 +62,7 @@ export default class index extends Component<any, any> {
 
     render() {
         const { getFieldProps } = this.props.form;
-        const { data } = this.state;
+        const { data ,showMask} = this.state;
         let sex = "";
         if (data.sex == "1") {
             sex = "男";
@@ -129,7 +130,6 @@ export default class index extends Component<any, any> {
                         </Button>
                     </View>
                 </Scene >
-                <MaskModal title='这里是弹出框' display={true}/>
             </View>
         );
     };

@@ -1,20 +1,13 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Scene, Text, Theme, InputItem, RegUtil, TextField, ActionSheet, Kit, Util,MaskModal} from 'components';
+import { Scene,MaskModal} from 'components';
 import {
     StyleSheet,
     View,
-    TextInput,
-    ScrollView,
-    Keyboard,
-    findNodeHandle,
-    TouchableOpacity,
     Dimensions,
-    ViewStyle
 } from 'react-native';
-import { List, Toast, Button } from 'antd-mobile';
-import objectAssign from 'object-assign';
+import {Button } from 'antd-mobile';
 
 import CodeForm from './component/code_form';
 
