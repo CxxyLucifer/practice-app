@@ -6,6 +6,7 @@ import {
     StyleSheet,
     View,
     Dimensions,
+    NativeModules
 } from 'react-native';
 import {Button } from 'antd-mobile';
 
@@ -34,6 +35,13 @@ export default class index extends Component<any, any> {
                         >
                             打开
                         </Button>
+
+                         <Button
+                            type="ghost"
+                            onClick={() => this._toast('原生android的方法')}
+                        >
+                            android原生Toast
+                        </Button>
                     </View>
                 </Scene >
                 <MaskModal 
@@ -49,6 +57,10 @@ export default class index extends Component<any, any> {
 
     _modal=(obj)=>{
         this.setState(obj)
+    }
+
+    _toast=(msg)=>{
+        NativeModules.extra.Toast(msg);
     }
 }
 
