@@ -8,7 +8,8 @@
     "clean": "rm -rf ./node_modules && npm install",
     "android": "node node_modules/react-native/local-cli/cli.js run-android && ./node_modules/.bin/tsc -w",
     "ios": "node node_modules/react-native/local-cli/cli.js run-ios --simulator 'iPhone 8' && ./node_modules/.bin/tsc -w",
-    "apk": "cd android && ./gradlew assembleRelease"
+    "apk": "cd android && ./gradlew assembleRelease",
+    "bundle-ios": "node node_modules/react-native/local-cli/cli.js bundle --entry-file index.js  --platform ios --dev false --bundle-output ./ios/bundle/index.jsbundle --assets-dest ./ios/bundle"
   },
   "dependencies": {
     "antd-mobile": "^2.1.0",

@@ -9,7 +9,9 @@ build/apps/
 build/components/
 build/typings/
 android/build/
+android/app/build/outputs/
 ios/build/
+ios/bundle/
 
 *.pbxuser
 !default.pbxuser
