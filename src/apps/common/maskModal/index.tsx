@@ -6,7 +6,9 @@ import {
     StyleSheet,
     View,
     Dimensions,
-    NativeModules
+    ScrollView,
+    NativeModules,
+    RefreshControl
 } from 'react-native';
 import {Button } from 'antd-mobile';
 
@@ -16,33 +18,43 @@ export default class index extends Component<any, any> {
     constructor(props) {
         super(props);
         this.state = {
-            showM1:false
+            showM1:false,
+            refreshing: false
         };
     }
 
     render() {
-        const { showM1} = this.state;
+        const { showM1,refreshing} = this.state;
         return (
             <View style={styles.content}>
                 <Scene
                     header={"MaskModal"}
                     hasBack={true}
                 >
-                    <View style={styles.container}>
-                        <Button
-                            type="ghost"
-                            onClick={() => this._modal({showM1:true})}
-                        >
-                            打开
-                        </Button>
+                    <ScrollView
+                        refreshControl={
+                            <RefreshControl
+                            title='fresh'
+                            refreshing={refreshing}
+                            onRefresh={this._onRefresh}
+                            />
+                      }>
+                        <View style={styles.container}>
+                            <Button
+                                type="ghost"
+                                onClick={() => this._modal({showM1:true})}
+                            >
+                                打开
+                            </Button>
 
-                         <Button
-                            type="ghost"
-                            onClick={() => this._toast('原生android的方法')}
-                        >
-                            android原生Toast
-                        </Button>
-                    </View>
+                            <Button
+                                type="ghost"
+                                onClick={() => this._toast('原生android的方法')}
+                            >
+                                android原生Toast
+                            </Button>
+                        </View>
+                    </ScrollView>
                 </Scene >
                 <MaskModal 
                     onClose={()=> this._modal({showM1:false}) }
@@ -53,6 +65,15 @@ export default class index extends Component<any, any> {
             </View>
         );
     };
+
+    timer;
+    _onRefresh = () => {
+        this.setState({refreshing: true});
+        this.timer = setTimeout(()=>{
+            this.setState({refreshing: false});
+            clearTimeout(this.timer);
+        },5000);
+    }
 
 
     _modal=(obj)=>{
