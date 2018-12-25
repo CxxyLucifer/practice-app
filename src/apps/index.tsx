@@ -1,8 +1,5 @@
 import React from 'react';
 import {
-    View,
-    StyleSheet,
-    ViewStyle,
     BackHandler,
     NativeModules
 } from 'react-native';
